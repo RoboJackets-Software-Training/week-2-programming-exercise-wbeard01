@@ -33,22 +33,25 @@ int main() {
 	std::string out;
 	NumberConverter nc(initial_values[0], initial_values[1], initial_values[2], initial_values[3], initial_values[4], initial_values[5]);
 	if (input.find("x") != std::string::npos) {
+		std::cout << "input: " << input.substr(2) << std::endl;
 		if (output_type == 'b') {
-			out = nc.hexToBinary(input);
+			out = nc.hexToBinary(input.substr(2));
 		} else if (output_type == 'd') {
-			out = nc.hexToDecimal(input);
+			out = std::to_string(nc.hexToDecimal(input.substr(2)));
 		} else {
 			out = input;
 		}
 	} else if (input.find("b") != std::string::npos) {
+		std::cout << "input: " << input.substr(1) << std::endl;
 		if (output_type == 'd') {
-			out = nc.binaryToDecimal(input);
+			out = std::to_string(nc.binaryToDecimal(input.substr(1)));
 		} else if (output_type == 'x') {
-			out = nc.binaryToDecimal(input);
+			out = nc.binaryToHex(input.substr(1));
 		} else {
 			out = input;
 		}
 	} else {
+		std::cout << "input: " << input << std::endl;
 		if (output_type == 'h') {
 			out = nc.decimalToHex(std::stoi(input));
 		} else if (output_type == 'b') {
@@ -57,7 +60,6 @@ int main() {
 			out = input;
 		}
 	}
-	std::cout << "input: " << input << std::endl;
 	std::cout << "output type: " << output_type << std::endl;
 	std::cout << "result: " << out << std::endl;
 }

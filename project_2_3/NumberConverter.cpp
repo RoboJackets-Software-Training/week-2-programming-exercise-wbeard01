@@ -54,7 +54,7 @@ char NumberConverter::numberToHexChar(int input) {
 int NumberConverter::binaryToDecimal(std::string input) {
   int ans = 0;
   int mult = 1;
-  for (int i = input.length() - 1; i >= 1; i--) {
+  for (int i = input.length() - 1; i >= 0; i--) {
     if (input[i] == '1') {
       ans += mult;
     }
@@ -68,7 +68,7 @@ int NumberConverter::hexToDecimal(std::string input) {
   decimal_outputs++;
   int ans = 0;
   int mult = 1;
-  for (int i = input.length() - 1; i >= 2; i--) {
+  for (int i = input.length() - 1; i >= 0; i--) {
     ans += hexCharToNumber(input[i]) * mult;
     mult *= 16;
   }
