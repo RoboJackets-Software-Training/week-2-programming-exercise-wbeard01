@@ -8,7 +8,8 @@
  *  - Set winner to Empty
  */
 Board::Board() {
-  // TODO
+  data.fill(Marker::Empty);
+  winner = Marker::Empty;
 }
 
 /**
@@ -42,8 +43,7 @@ bool Board::placeMarker(int r, int c, Marker marker) {
  * @return marker contained at <r,c>
  */
 Marker Board::getMarker(int r, int c) {
-  // TODO using the helper return the marker at that location data[index]
-  // TODO use helper method locationToIndex
+  return data[locationToIndex(r, c)];
 }
 
 /**
@@ -52,7 +52,17 @@ Marker Board::getMarker(int r, int c) {
  * @note The game is over if no more moves can be made or if one player has won the game
  */
 bool Board::isOver() {
-  // TODO
+  int e = 0;
+  for (Marker m : data) {
+    if (m == Marker::Empty) {
+      e++;
+    }
+  }
+  if (winner != Marker::Empty || e == 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -72,12 +82,7 @@ Marker Board::getWinner() {
  *       saved contiguously in data immediately following the row above it.
  */
 size_t Board::locationToIndex(int r, int c) {
-  // TODO what is the formula for the index into data based off of row and col?
-  // indexes of the board are
-  // data[0], data[1], data[2]
-  // data[3], data[4], data[5]
-  // data[6], data[7], data[8]
-  return 0;
+  return 3 * r + c;
 }
 
 /**
